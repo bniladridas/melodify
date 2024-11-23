@@ -6,7 +6,7 @@ First off, thank you for considering contributing to Melodify! It's people like 
 
 ### Reporting Bugs
 
-If you find a bug, please report it by opening an issue on our [GitHub repository](https://github.com/yourusername/melodify/issues). Please include as much detail as possible, including:
+If you find a bug, please report it by opening an issue on our [GitHub repository](https://github.com/bniladridas/melodify/issues). Please include as much detail as possible, including:
 
 - Steps to reproduce the bug
 - Expected behavior
@@ -16,7 +16,7 @@ If you find a bug, please report it by opening an issue on our [GitHub repositor
 
 ### Suggesting Enhancements
 
-If you have an idea for an enhancement or new feature, please open an issue on our [GitHub repository](https://github.com/yourusername/melodify/issues) and describe your idea in detail. Please include:
+If you have an idea for an enhancement or new feature, please open an issue on our [GitHub repository](https://github.com/bniladridas/melodify/issues) and describe your idea in detail. Please include:
 
 - The problem your enhancement addresses
 - A detailed description of the proposed enhancement
@@ -31,7 +31,7 @@ We welcome pull requests! If you have a fix or enhancement, please follow these 
 3. Make your changes.
 4. Commit your changes: `git commit -m 'Add some feature'`
 5. Push to the branch: `git push origin my-feature-branch`
-6. Open a pull request on our [GitHub repository](https://github.com/yourusername/melodify/pulls).
+6. Open a pull request on our [GitHub repository](https://github.com/bniladridas/melodify/pulls).
 
 ### Coding Standards
 
@@ -52,4 +52,4 @@ To set up your development environment, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/melodify.git
+   git clone https://github.com/bniladridas/melodify.git
