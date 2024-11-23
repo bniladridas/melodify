@@ -72,8 +72,6 @@ Melodify is an advanced Node.js application that leverages the Spotify Web API t
 ### Component Architecture
 The system is built using a modern, scalable architecture with clear separation of concerns:
 
-![](/img/Spotify%20Integration%20Architecture%20Diagram.png)
-
 ```mermaid
 graph TB
     subgraph "Client Layer"
@@ -131,8 +129,6 @@ graph TB
 
 ### Sequence Flow
 This diagram illustrates the interaction flow between different components:
-
-![](/img/Spotify%20Integration%20Sequence%20Flow.png)
 
 ```mermaid
 sequenceDiagram
