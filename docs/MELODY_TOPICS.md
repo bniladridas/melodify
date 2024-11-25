@@ -1,4 +1,4 @@
-# 🎵 Melodify Project Topics
+# 🎵 Melody Project Topics
 
 ## 🚀 Primary Topics
 ```
