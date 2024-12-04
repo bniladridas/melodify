@@ -4,7 +4,7 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![npm version](https://badge.fury.io/js/melodify.svg)](https://badge.fury.io/js/melodify)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/yourusername/melodify/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/bniladridas/melodify/graphs/commit-activity)
 [![Play](https://img.shields.io/badge/Play-Visit%20Project-blue.svg)](https://melody-three.vercel.app)
 
 ![Preview 1](/img/Spotify%20Preview%201.png)
