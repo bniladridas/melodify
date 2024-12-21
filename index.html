@@ -3,167 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melodify - Spotify Playlist</title>
-    <link rel="icon" href="/frontend/favicon/favicon.ico" type="image/x-icon">
+    <title>Melodify Premium</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Meta tags for SEO -->
-    <meta name="description" content="Discover your next favorite track with Melodify's curated Spotify playlist. Updated weekly with premium quality music.">
-    <meta name="keywords" content="Spotify, Playlist, Music, Curated Selection, Premium Quality, Updated Weekly">
-    <meta name="author" content="Melodify Team">
-
-    <!-- Meta tags for social media sharing -->
-    <meta property="og:title" content="Melodify - Spotify Playlist">
-    <meta property="og:description" content="Discover your next favorite track with Melodify's curated Spotify playlist. Updated weekly with premium quality music.">
-    <meta property="og:image" content="https://example.com/path/to/your/image.jpg">
-    <meta property="og:url" content="https://example.com">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Melodify - Spotify Playlist">
-    <meta name="twitter:description" content="Discover your next favorite track with Melodify's curated Spotify playlist. Updated weekly with premium quality music.">
-    <meta name="twitter:image" content="https://example.com/path/to/your/image.jpg">
-
-    <!-- Meta tags for GitHub repository -->
-    <meta name="github-repo" content="https://github.com/bniladridas/melody">
-
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --gradient-start: #2c3e50;
+            --gradient-end: #000000;
+            --accent-color: #FFD700;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         body {
-            background: linear-gradient(135deg, #1DB954, #191414);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem;
             color: white;
             position: relative;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
+        /* Premium background effects */
+        .background-effects {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .container {
+        .gradient-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .sphere-1 {
+            background: radial-gradient(circle at center, #FFD700, transparent 70%);
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .sphere-2 {
+            background: radial-gradient(circle at center, #1DB954, transparent 70%);
+            width: 600px;
+            height: 600px;
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -5s;
+        }
+
+        .main-container {
             position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeIn 1s ease-out;
-        }
-
-        .playlist-container {
-            background: rgba(25, 20, 20, 0.9);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideUp 1s ease-out;
-            width: 100%;
-        }
-
-        .spotify-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #1DB954;
-            animation: pulse 2s infinite;
-        }
-
-        iframe {
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            width: 100%;
-            height: 450px;
-        }
-
-        .playlist-info {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #b3b3b3;
+        .header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
             gap: 1rem;
-            animation: fadeIn 1.5s ease-out;
         }
 
-        .playlist-info i {
-            margin-right: 0.5rem;
+        .premium-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: shimmer 2s infinite linear;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
+        .player-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .player-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .visualizer {
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .visualizer-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--accent-color), #FFA500);
+            border-radius: 3px 3px 0 0;
+            transition: height 0.2s ease;
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateX(5px);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.8rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #FFA500);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .premium-text {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
             }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         @media (max-width: 768px) {
-            body {
+            .main-container {
                 padding: 1rem;
             }
 
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .playlist-info {
+            .header {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <i class="fab fa-spotify spotify-icon"></i>
-        <h1>Discover Your Next Favorite Track</h1>
-        <div class="playlist-container">
-            <iframe
-                title="Spotify Embed: Recommendation Playlist"
-                src="https://open.spotify.com/embed/playlist/2ueiebiHlcrONR0YLhVryw?utm_source=generator&theme=0"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-            ></iframe>
-            <div class="playlist-info">
-                <span><i class="fas fa-music"></i>Curated Selection</span>
-                <span><i class="fas fa-heart"></i>Updated Weekly</span>
-                <span><i class="fas fa-headphones"></i>Premium Quality</span>
+    <div class="background-effects">
+        <div class="gradient-sphere sphere-1"></div>
+        <div class="gradient-sphere sphere-2"></div>
+    </div>
+
+    <div class="main-container">
+        <header class="header">
+            <div class="logo-section">
+                <i class="fab fa-spotify" style="font-size: 2.5rem; color: #FFD700;"></i>
+                <h1>Melodify <span class="premium-text">Premium</span></h1>
+            </div>
+            <span class="premium-badge">Elite Experience</span>
+        </header>
+
+        <div class="content-grid">
+            <div class="player-section">
+                <iframe
+                    title="Spotify Embed: Premium Playlist"
+                    src="https://open.spotify.com/embed/playlist/2ueiebiHlcrONR0YLhVryw?utm_source=generator&theme=0"
+                    frameBorder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    style="width: 100%; height: 352px; border-radius: 12px;"
+                ></iframe>
+                
+                <div class="visualizer" id="visualizer">
+                    <!-- Bars will be added by JavaScript -->
+                </div>
+
+                <div class="controls">
+                    <button class="control-btn" onclick="toggleVisualizer()">
+                        <i class="fas fa-play"></i> Enhance Experience
+                    </button>
+                    <button class="control-btn">
+                        <i class="fas fa-crown"></i> Premium Mix
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stats-card">
+                    <h3>Sound Quality</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Audience Match</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Premium Features</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Popularity Score</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Initialize visualizer
+        const visualizer = document.getElementById('visualizer');
+        let visualizerActive = false;
+        let visualizerInterval;
+
+        // Create visualizer bars
+        for (let i = 0; i < 30; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'visualizer-bar';
+            bar.style.height = '0px';
+            visualizer.appendChild(bar);
+        }
+
+        function updateVisualizer() {
+            if (!visualizerActive) return;
+            
+            const bars = visualizer.children;
+            for (let bar of bars) {
+                const height = Math.random() * 100;
+                bar.style.height = `${height}px`;
+            }
+        }
+
+        function toggleVisualizer() {
+            visualizerActive = !visualizerActive;
+            if (visualizerActive) {
+                visualizerInterval = setInterval(updateVisualizer, 100);
+            } else {
+                clearInterval(visualizerInterval);
+                const bars = visualizer.children;
+                for (let bar of bars) {
+                    bar.style.height = '0px';
+                }
+            }
+        }
+
+        // Animate progress bars on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            bar.dataset.width = bar.style.width;
+            bar.style.width = '0';
+            observer.observe(bar);
+        });
+    </script>
 </body>
 </html>
